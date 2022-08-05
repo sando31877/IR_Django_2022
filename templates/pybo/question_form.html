@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="question-form-box">
+    <div class="question-form-title">
+        <h2>글 작성</h2>
+    </div>
+    <form method="post" class="post-form my-3">
+        {% csrf_token %}
+        {% include "form_errors.html" %}
+            <input type="text" class="textarea-title" placeholder="제목을 입력해주세요." name="subject" id="subject"
+                   value="{{ form.subject.value|default_if_none:'' }}">
+            <textarea placeholder="내용을 입력해주세요." class="textarea-content" name="content"
+                      id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
+        <button type="submit">저장하기</button>
+    </form>
+</div>
+{% endblock %}
